@@ -80,8 +80,10 @@ function setHermite(p0, p1, p0l, p1l) {
     ctx.beginPath();
     M = transformCanvas(canvas.width, canvas.height);
     ctx.font = "14px Arial";
+    //coordenadas do canvas
     pos0 = multVec(mult(M, translate(p0[0], p0[1])), [0, 0, 1]);
     pos1 = multVec(mult(M, translate(p1[0], p1[1])), [0, 0, 1]);
+    //vetor
     pos0l = multVec(mult(M, translate(p0[0] + p0l[0] / 10., p0[1] + p0l[1] / 10.)), [0, 0, 1]);
     pos1l = multVec(mult(M, translate(p1[0] + p1l[0] / 10., p1[1] + p1l[1] / 10.)), [0, 0, 1]);
     calculatePointsCurveHermite(p0, p1, p0l, p1l);
@@ -127,12 +129,31 @@ function calculatePointsCurveHermite(p0, p1, p0l, p1l) {
     }
 }
 
+function calculatePointsCurveBezier(p0, p1, p0l, p1l) {
+//     q = [
+//         [p0[0], p0[1]],
+//         [p1[0], p1[1]],
+//         [p0l[0], p0l[1]],
+//         [p1l[0], p1l[1]]
+//     ];
+//     for (var i = 0; i <= np; i++) {
+//         u = (1. * (i)) / np;
+//         p = mult(getMatrixBuhermite(u), q);
+//         points_curveH.push([p[0], p[1]]);
+//     }
+// }
+
 function getMatrixBuhermite(u) {
     return [
         [2 * u * u * u - 3 * u * u + 1, -2 * u * u * u + 3 * u * u, u * u * u - 2 * u * u + u, u * u * u - u * u]
     ];
 }
 
+function getMatrixBuBezier(u) {
+//     return [
+//         [2 * u * u * u - 3 * u * u + 1, -2 * u * u * u + 3 * u * u, u * u * u - 2 * u * u + u, u * u * u - u * u]
+//     ];
+// }
 
 
 
